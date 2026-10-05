@@ -54,7 +54,11 @@ draw = ImageDraw.Draw(image)
 # Draw a white background
 draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=255)
 
-font = ImageFont.truetype('PixelOperator.ttf', 16)
+font_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "PixelOperator.ttf")
+try:
+    font = ImageFont.truetype(font_path, 16)
+except OSError:
+    font = ImageFont.load_default()
 
 # Static MP3 player UI example
 draw.rectangle((0, 0, oled.width - 1, oled.height - 1), outline=0, fill=255)
